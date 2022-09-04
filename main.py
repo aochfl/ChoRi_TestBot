@@ -13,4 +13,14 @@ async def main():
         file.close()
         await app.start(bot_token)
 
+
+@app.command()
+async def ping(ctx):
+    await ctx.send('pong')
+
+
+@app.command(name="핑")
+async def ping(ctx):
+    await ctx.send('퐁')
+
 asyncio.run(main())
