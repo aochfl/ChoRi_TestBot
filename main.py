@@ -21,6 +21,7 @@ async def ping(ctx):
 
 @app.command(name="핑")
 async def ping(ctx):
-    await ctx.send('퐁')
+    embed = discord.Embed(title="ping pong", description="핑퐁")
+    await ctx.reply('퐁', embeds=[embed, embed])
 
 asyncio.run(main())
