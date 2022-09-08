@@ -11,7 +11,6 @@ async def load_extensions():
     for filename in os.listdir("Cogs"):
         if filename.endswith(".py"):
             await app.load_extension(f"Cogs.{filename[:-3]}")
-        await load_extensions()
     # cog 하나씩 불러오기
     # activate_list = ["ping"]
     # for name in activate_list:
