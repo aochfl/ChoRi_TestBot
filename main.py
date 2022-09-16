@@ -67,6 +67,19 @@ async def unload_function(extension=None):
                     pass
 
 
+@app.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        embed = discord.Embed(title="몰?루", description="입력하신 명령어는 존재하지 않는 명령어입니다", color=0xFF0000)
+        await ctx.reply(embed=embed)
+        return
+    else:
+        embed = discord.Embed(title="오류!!", description="예상치 못한 오류가 발생했습니다.", color=0xFF0000)
+        embed.add_field(name="상세", value=f"```{error}```")
+        await ctx.reply(embed=embed)
+        return
+
+
 async def main():
     async with app:
         await load_extensions()
