@@ -2,9 +2,21 @@ import asyncio
 import os
 import discord
 from discord.ext import commands
+import sys  # 모듈설치 기능을 위해
+import subprocess   # 모듈설치 기능을 위해
 
 intents = discord.Intents.all()
 app = commands.Bot(command_prefix='!', intents=intents)
+library_list = ['beautifulsoup4']  # 설치할 library list
+
+
+def install_library():
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'])  # 사전 pip 모듈 먼저 업그레이드
+    for libName in library_list:
+        try:
+            mod = __import__('%s' %(libName), fromlist=[libName])
+        except:
+            subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', libName])
 
 
 async def load_extensions():
@@ -82,6 +94,7 @@ async def on_command_error(ctx, error):
 
 async def main():
     async with app:
+        install_library()
         await load_extensions()
         file = open("discord_token.txt")
         bot_token = file.readline()
