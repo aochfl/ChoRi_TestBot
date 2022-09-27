@@ -15,12 +15,6 @@ def install_library():
     for libName in library_list:
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', libName])
         print(libName+" 설치완료\n")
-        # try:
-        #     # mod = __import__('%s' %(libName), fromlist=[libName])
-        #     print(libName+"이 설치확인\n")
-        # except :
-        #     subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', libName])
-        #     print(libName+"이 설치성공\n")
 
 
 async def load_extensions():
