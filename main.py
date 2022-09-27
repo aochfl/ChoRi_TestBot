@@ -13,10 +13,14 @@ library_list = ['beautifulsoup4']  # 설치할 library list
 def install_library():
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'])  # 사전 pip 모듈 먼저 업그레이드
     for libName in library_list:
-        try:
-            mod = __import__('%s' %(libName), fromlist=[libName])
-        except:
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', libName])
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', libName])
+        print(libName+" 설치완료\n")
+        # try:
+        #     # mod = __import__('%s' %(libName), fromlist=[libName])
+        #     print(libName+"이 설치확인\n")
+        # except :
+        #     subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', libName])
+        #     print(libName+"이 설치성공\n")
 
 
 async def load_extensions():
